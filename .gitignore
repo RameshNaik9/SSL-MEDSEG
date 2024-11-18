@@ -1,0 +1,8 @@
+/data/acdc/
+# /models/
+.git/
+*.nii.gz  # Exclude specific file types if applicable
+/models/*.pth
+/models/*.ckpt
+/models/*.tar
+
