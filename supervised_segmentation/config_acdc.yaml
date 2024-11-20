@@ -9,10 +9,11 @@ experiment_name: "ACDC"
 wandb_tag: ""
 
 dataset: "acdc"
-dataset_root: "~/data/acdc/training/" 
+dataset_root: "/content/SSL-MedSeg/data/acdc/testing" 
 subset_ratio: 1.0
 
-artifacts_root: "artifacts-acdc/supervised"
+artifacts_root: "/content/SSL-MedSeg/inference_results"
+"
 
 trainer:
   gpus: 1
@@ -23,7 +24,8 @@ trainer:
 
 model:
   encoder_name: "tu-resnet50"
-  encoder_weights: "byol-imagenet-acdc-ep=34.ckpt" 
+  encoder_weights: "/content/drive/MyDrive/ssl/data/models/byol-imagenet-acdc-ep=34.ckpt"
+" 
   freeze_encoder_weights_epochs : 0
   pretrained_decoder: False
 

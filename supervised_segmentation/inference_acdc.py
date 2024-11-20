@@ -10,6 +10,11 @@ from torch.utils.data import Subset
 import albumentations as A
 import torchmetrics
 from tabulate import tabulate
+import sys
+import os
+
+# Add the root directory to the system path
+sys.path.append("/content/SSL-MedSeg")
 
 import data.acdc_utils as acdc_utils
 from data.acdc_dataset import ACDCDatasetAlbu, DATASET_MEAN, DATASET_STD
@@ -19,13 +24,14 @@ import utils
 PRED_FOLDER = "inference"
 
 def generate_prediction_pdfs(checkpoint_path: str,
-                             dataset_root = "~/data/acdc/training",
+                             dataset_root = "/content/drive/MyDrive/ssl/data/acdc/testing",
                              num_samples = 10000,
-                             output_folder=".",
+                             output_folder="/content/SSL-MedSeg/output",
                              merge_prediction_pdfs=True,
                              remove_individual_pdfs=False,
                              pad_to = 224):
 
+  
     model = CardiacSegmentation.load_from_checkpoint(checkpoint_path)
     model.eval()
 
@@ -144,7 +150,7 @@ def multi_ckpt_eval(ckpt_paths):
 
 if __name__ == '__main__':
     ckpt_paths = [
-        "artifacts-acdc/supervised/experiment_name/version_x/checkpoints/checkpoint.ckpt",
+        "/content/SSL-MedSeg/models/byol-imagenet-acdc-ep=34.ckpt",
         # e.g.: "artifacts-acdc/supervised/ACDC/version_0/checkpoints/epoch=121-step=3171.ckpt"
         ]
     
